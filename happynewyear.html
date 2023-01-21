@@ -4,7 +4,81 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Caramel&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-image: url('image/background1.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .wrapper{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            line-height: 80px;
+        }
+        .wrapper h1{
+            font-size: 40px;
+            font-family: 'Lobster', cursive;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        .wrapper .box-time{
+            position: relative;
+            display: flex;
+            line-height: normal;
+            width: 530px;
+            justify-content: space-between;
+        }
+        .box-time .time{
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgb(216, 48, 48);
+            border-radius: 50%;
+            box-shadow: 0 0 20px #fff,
+            0 0 40px #fff;
+        }
+        .box-time .time::before{
+            position: absolute;
+            content: '';
+            width: 100px;
+            height: 100px;
+            border: 11px solid rgb(251, 255, 0);
+            box-shadow: inset 0 0 10px #333;
+            border-radius: 50%;
+        }
+        .box-time .time p{
+            font-size: 35px;
+            font-family: 'Caramel', cursive;
+        }
+        .box-time .time span{
+            padding: 10px 0px;
+            font-size: 25px;
+            font-family: 'Fredoka One', cursive;
+        }
+    </style>
     <title>Happy New Year 2023</title>
 </head>
 <body>
@@ -30,5 +104,27 @@
         </div>
     </div>
 </body>
-<script src="app.js"></script>
+<script>
+    var fut = new Date("jan 12, 2023 13:29:00").getTime()
+    let x = setInterval(function stime(){
+        var now = new Date().getTime()
+        var D = fut - now
+        var days = Math.floor(D/(1000*60*60*24))
+        var hours = Math.floor(D/(1000*60*60))
+        var minutes = Math.floor(D/(1000*60))
+        var seconds = Math.floor(D/(1000))
+        hours %=24
+        minutes %=60
+        seconds %=60
+        document.getElementById("days").innerText = days
+        document.getElementById("hours").innerText = hours
+        document.getElementById("minutes").innerText = minutes
+        document.getElementById("seconds").innerText = seconds
+
+        if(D<0){
+            clearInterval(x);
+            window.location.href="intro.html"
+        }
+    }, 0.1);
+</script>
 </html>
